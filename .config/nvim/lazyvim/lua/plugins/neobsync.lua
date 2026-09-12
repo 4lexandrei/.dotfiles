@@ -1,20 +1,20 @@
 local is_windows = vim.uv.os_uname().version:match("Windows")
-local base_dir = is_windows and "C:\\Users\\alexa\\dev\\neovim\\" or "/home/alexandrei/dev/neovim/"
-local vault_path = is_windows and "C:\\Users\\alexa\\Documents\\Notes\\" or "/home/alexandrei/Documents/Notes/"
+local base_dir = is_windows and os.getenv("USERPROFILE") .. "\\dev\\neovim\\" or os.getenv("HOME") .. "/dev/neovim/"
+-- local vault_path = is_windows and os.getenv("USERPROFILE") .. "\\Documents\\Notes\\"
+--   or os.getenv("HOME") .. "/Documents/Notes/"
 local dir_exists = vim.uv.fs_stat(base_dir) ~= nil
 
 return {
   {
-    "neobsync.nvim",
-    enabled = dir_exists,
-    dir = base_dir .. "neobsync.nvim",
-    config = function()
-      require("neobsync.config").setup({
-        vault_path = vault_path,
-        HOST = "127.0.0.1",
-        PORT = 9000,
-      })
-      require("neobsync").setup()
-    end,
+    "4lexandrei/neobsync.nvim",
+    branch = "dev",
+    dev = dir_exists,
+    dir = dir_exists and base_dir .. "neobsync.nvim" or nil,
+    ft = "markdown",
+    opts = {
+      vault_path = nil,
+      HOST = "127.0.0.1",
+      PORT = 9000,
+    },
   },
 }
