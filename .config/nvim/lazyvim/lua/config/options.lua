@@ -15,4 +15,4 @@ vim.g.root_spec = { "cwd" }
 -- Custom vim globals
 vim.g.signature = "blink" -- "blink" | "noice" as signature provider
 
-vim.lsp.set_log_level("off") -- Prevents large size lsp log file
+vim.lsp.log.set_level("off") -- Prevents large size lsp log file
