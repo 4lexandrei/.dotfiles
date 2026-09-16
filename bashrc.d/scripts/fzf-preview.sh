@@ -40,6 +40,16 @@ elif [[ "$type" =~ image/ ]]; then
     printf "Image preview requires 'kitten' (from kitty terminal)\n"
   fi
 
+# PDFs
+elif [[ "$type" == application/pdf* ]]; then
+  if command -v kitten >/dev/null; then
+    dim=${FZF_PREVIEW_COLUMNS:-80}x${FZF_PREVIEW_LINES:-24}
+    pdftoppm -f 1 -l 1 -singlefile "$item" |
+      kitten icat --clear --transfer-mode=stream --unicode-placeholder --place="$dim@0x0"
+  else
+    printf "PDF preview requires 'kitten' (from kitty terminal)\n"
+  fi
+
 # Binary files
 else
   printf "No preview available (binary file)\n"
