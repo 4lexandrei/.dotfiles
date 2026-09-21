@@ -59,11 +59,11 @@ Examples:
 SymbolicLink for lazyvim
 
 ```powershell
-New-Item -ItemType SymbolicLink -Path "C:\Users\alexa\AppData\Local\nvim" -Target "C:\Users\alexa\.dotfiles\.config\nvim\lazyvim"
+New-Item -ItemType SymbolicLink -Path "C:\Users\username\AppData\Local\nvim" -Target "C:\Users\username\.dotfiles\.config\nvim\lazyvim"
 ```
 
 SymbolicLink for .bashrc
 
 ```powershell
-New-Item -ItemType SymbolicLink -Path "C:\Users\alexa\.bashrc" -Target "C:\Users\alexa\.dotfiles\.bashrc"
+New-Item -ItemType SymbolicLink -Path "C:\Users\username\.bashrc" -Target "C:\Users\username\.dotfiles\.bashrc"
 ```
