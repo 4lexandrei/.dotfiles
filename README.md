@@ -43,12 +43,6 @@ Run dotfiles setup command
 
 ## Windows Support
 
-For the latest (unstable) version, clone the `dev` branch:
-
-```
-git clone -b dev https://github.com/4lexandrei/dotfiles.git
-```
-
 For Windows users, open Powershell as Administrator and run the following snippet to create symlinks
 
 ```powershell
