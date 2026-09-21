@@ -103,6 +103,7 @@ Rectangle {
 
     MouseArea {
         id: mouseArea
+
         anchors.fill: parent
         drag.target: window
         cursorShape: Qt.PointingHandCursor

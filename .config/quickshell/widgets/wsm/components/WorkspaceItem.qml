@@ -17,8 +17,8 @@ Rectangle {
     radius: root.config.globalRadius
     color: dropArea.containsDrag ? root.config.workspaceContainsDragColor : root.config.workspaceColor
 
-    implicitWidth: (root.currentMonitor?.width / (root.workspaces.length + 1)) * root.config.zoom
-    implicitHeight: (root.currentMonitor?.height / (root.workspaces.length + 1)) * root.config.zoom
+    implicitWidth: root.currentMonitor ? (root.currentMonitor?.width / (root.workspaces.length + 1)) * root.config.zoom : 1
+    implicitHeight: root.currentMonitor ? (root.currentMonitor?.height / (root.workspaces.length + 1)) * root.config.zoom : 1
 
     property int minX: toplevels.length ? Math.min(...toplevels.map(t => t.lastIpcObject.at[0] - workspace.root.config.workspacePadding)) : 0
     property int minY: toplevels.length ? Math.min(...toplevels.map(t => t.lastIpcObject.at[1] - workspace.root.config.workspacePadding)) : 0

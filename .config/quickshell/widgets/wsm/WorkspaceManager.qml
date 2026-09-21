@@ -8,9 +8,12 @@ import Quickshell.Hyprland
 
 PanelWindow { // qmllint disable uncreatable-type
     id: root
+    property bool layoutReady: currentMonitor !== null && workspaces.length > 0 && workspacesContainer.width > 0 && workspacesContainer.height > 0
+
+    visible: layoutReady
     color: "transparent"
     focusable: true
-    property bool debug: false
+    property bool debug: true
 
     readonly property var defaultConfig: ({
             position: "center",
