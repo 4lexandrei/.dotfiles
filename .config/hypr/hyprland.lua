@@ -17,7 +17,7 @@ hl.monitor({
 
 hl.monitor({
 	output = "HEADLESS",
-	mode = "1920x1080@144",
+	mode = "1920x1080@60",
 	position = "auto",
 	scale = "1",
 })
@@ -283,6 +283,12 @@ hl.bind(
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 1%+"), { locked = true, repeating = true })
 
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 1%-"), { locked = true, repeating = true })
+
+hl.bind(mainMod .. " + F5", function()
+	hl.timer(function()
+		hl.dispatch(hl.dsp.dpms({ action = "toggle" }))
+	end, { timeout = 500, type = "oneshot" })
+end)
 
 -- ┌────────────────────────┐
 -- │ Windows and Workspaces │
