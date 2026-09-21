@@ -5,16 +5,67 @@
 # └───────┘
 # Browse and explore your knowledge library
 
-shiru_dir="$HOME/Documents/Books/"
+set -euo pipefail
+
+SHIRU_DIR="$HOME/Documents/Books/"
+BROWSER="firefox"
+PRIVATE=true
 
 selected_shiru=$(
   (
-    find "$shiru_dir" -mindepth 1 -maxdepth 1 -type f |
-      fzf --prompt="Please select: " --border --reverse
+    find "$SHIRU_DIR" -type f -iname "*.pdf" -o -iname "*.epub" |
+      fzf \
+        --prompt="Please select: " \
+        --border \
+        --reverse \
+        --delimiter="$SHIRU_DIR" \
+        --with-nth=2
   )
 )
 
+open_shiru() {
+  local file="$1"
+  local command=()
+
+  case "$BROWSER" in
+  default)
+    command=(xdg-open)
+    ;;
+  firefox)
+    command=(firefox)
+    [[ "$PRIVATE" == true ]] && command+=(--private-window)
+    ;;
+  chromium)
+    command=(chromium)
+    [[ "$PRIVATE" == true ]] && command+=(--incognito)
+    ;;
+  *)
+    printf "Unknown browser: %s\n" "$BROWSER" >&2
+    return 1
+    ;;
+
+  esac
+
+  case "$OSTYPE" in
+  linux-gnu*)
+    "${command[@]}" "$file"
+    ;;
+  cygwin*)
+    if [[ "$BROWSER" == default ]]; then
+      start "" "$file"
+    else
+      start "${command[@]}" "$file"
+    fi
+    ;;
+  *)
+    printf "Unsupported OS: %s\n" "$OSTYPE" >&2
+    return 1
+    ;;
+  esac
+}
+
 if [[ -n "$selected_shiru" ]]; then
   printf "Opening %s\n" "$selected_shiru"
-  xdg-open "$selected_shiru"
+  open_shiru "$selected_shiru" &>/dev/null &
+  disown
 fi
