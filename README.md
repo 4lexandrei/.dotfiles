@@ -22,13 +22,13 @@ This repository contains my personal dotfiles.
 Clone repository:
 
 ```
-git clone https://github.com/4lexandrei/dotfiles.git ~/.dotfiles
+git clone https://github.com/4lexandrei/.dotfiles.git ~/.dotfiles
 ```
 
 For the latest (unstable) version, clone the `dev` branch:
 
 ```
-git clone -b dev https://github.com/4lexandrei/dotfiles.git ~/.dotfiles
+git clone -b dev https://github.com/4lexandrei/.dotfiles.git ~/.dotfiles
 ```
 
 ## Usage
