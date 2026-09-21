@@ -9,6 +9,7 @@
 subdirs=(
   # Get subdirectories inside ~/dev
   ~/dev/*
+  ~/dev/*/lab/*
   # Add more subdirectories here
 )
 dirs=(
